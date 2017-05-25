@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
@@ -16,7 +19,8 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         listView = (ListView) findViewById(R.id.list);
-        arrayList = new ArrayList<>();
+        Gson gson = new Gson();
+        arrayList = gson.fromJson(getIntent().getStringExtra("info"),(Type) new Data());
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, arrayList);
         listView.setAdapter(arrayAdapter);
     }
