@@ -1,10 +1,8 @@
 package com.example.sonanew.scanner;
 
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.ActionMenuItemView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -30,16 +28,7 @@ public class MainActivity extends AppCompatActivity {
         linearLayout.requestFocus();
         add = (Button) findViewById(R.id.add);
         scan = (Button) findViewById(R.id.scan);
-        scan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent("nlscan.action.SCANNER_RESULT");
-                sendBroadcast(intent);
-                intent = getIntent();
-                barcode.setText(intent.getStringExtra("barcode"));
-                count.requestFocus();
-            }
-        });
+        read_barcode();
 
 
     }
@@ -48,12 +37,22 @@ public class MainActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
-                Toast.makeText(MainActivity.this, "barv", Toast.LENGTH_SHORT).show();
+                if (!barcode.getText().toString().equals("") && !count.getText().toString().equals("")) {
+                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                    startActivity(intent);
+                }
                 break;
-            case KeyEvent.KEYCODE_F1:
-                break;
-
         }
         return true;
+    }
+
+    public void read_barcode() {
+        Intent intent = new Intent("nlscan.action.SCANNER_RESULT");
+        sendBroadcast(intent);
+        intent = getIntent();
+        barcode.setText(intent.getStringExtra("barcode"));
+        if (!barcode.getText().toString().equals("")) {
+            count.requestFocus();
+        }
     }
 }
