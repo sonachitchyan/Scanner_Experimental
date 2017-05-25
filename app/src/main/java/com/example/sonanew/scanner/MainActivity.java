@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         count.setFocusable(true);
         count.setFocusableInTouchMode(true);
         barcode.setFocusable(false);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.line);
+        linearLayout.requestFocus();
         add = (Button) findViewById(R.id.add);
         scan = (Button) findViewById(R.id.scan);
         scan.setOnClickListener(new View.OnClickListener() {
