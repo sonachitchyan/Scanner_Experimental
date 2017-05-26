@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.method.KeyListener;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -23,7 +25,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private Button add, scan;
     private EditText barcode, count;
     private List<Data> list = new ArrayList<>();
     private BroadcastReceiver scanner = null;
@@ -34,17 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         barcode = (EditText) findViewById(R.id.barcode);
         count = (EditText) findViewById(R.id.count);
-        View view = getCurrentFocus();
-        switch (view.getId()) {
-            case R.id.barcode:
-                view.clearFocus();
-                break;
-        }
-        barcode.setFocusable(false);
-//        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.line);
-//        linearLayout.requestFocus();
-//        add = (Button) findViewById(R.id.add);
-//        scan = (Button) findViewById(R.id.scan);
         scanner = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -74,6 +64,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+    public void onRadioButtonChecked(View view){
+        boolean c = ((RadioButton)view).isChecked();
+        if (c){
+            switch (view.getId()){
+                case R.id.radio_article:
+                    barcode.setHint("Article");
+                    barcode.setInputType(InputType.TYPE_CLASS_TEXT);
+                    break;
+                case R.id.radio_code:
+                    barcode.setHint("Code");
+                    barcode.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    break;
+                case R.id.radio_barcode:
+                    barcode.setHint("Barcode");
+                    barcode.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    break;
+            }
+        }
     }
 
 //    @Override

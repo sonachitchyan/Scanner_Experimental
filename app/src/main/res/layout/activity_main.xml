@@ -9,6 +9,45 @@
     android:padding="16dp"
     tools:context="com.example.sonanew.scanner.MainActivity">
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:checkedButton="@id/radio_barcode"
+        >
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/code"
+            android:textSize="20sp"
+            android:layout_marginEnd="4dp"
+            android:id="@+id/radio_code"
+            android:onClick="onRadioButtonChecked"
+
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/art"
+            android:textSize="20sp"
+            android:layout_marginEnd="4dp"
+            android:id="@+id/radio_article"
+            android:onClick="onRadioButtonChecked"
+
+            />
+        <RadioButton
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/barcode"
+            android:textSize="20sp"
+            android:id="@+id/radio_barcode"
+            android:onClick="onRadioButtonChecked"
+            />
+    </RadioGroup>
+
     <EditText
         android:id="@+id/barcode"
         android:layout_width="match_parent"

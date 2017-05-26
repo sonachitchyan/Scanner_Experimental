@@ -2,6 +2,8 @@ package com.example.sonanew.scanner;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -9,20 +11,23 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main2Activity extends AppCompatActivity {
-    private ListView listView;
-    private ArrayList<String> arrayList;
-    private ArrayAdapter<String> arrayAdapter;
+    private RecyclerView recyclerView;
+    private List<Data> dataList = new ArrayList<>();
+    private Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        listView = (ListView) findViewById(R.id.list);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         Gson gson = new Gson();
-        arrayList = gson.fromJson(getIntent().getStringExtra("info"), (Type) new Data());
-        arrayAdapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, arrayList);
-        listView.setAdapter(arrayAdapter);
+        dataList = gson.fromJson(getIntent().getStringExtra("info"), (Type) new Data());
+        adapter = new Adapter(dataList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 }

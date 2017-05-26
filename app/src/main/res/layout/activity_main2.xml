@@ -6,9 +6,9 @@
     android:padding="16dp"
     android:layout_height="match_parent"
     tools:context="com.example.sonanew.scanner.Main2Activity">
-<ListView
+
+<android.support.v7.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/list"/>
-
+    android:id="@+id/recycler_view"></android.support.v7.widget.RecyclerView>
 </RelativeLayout>
