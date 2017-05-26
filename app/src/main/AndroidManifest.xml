@@ -17,11 +17,5 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2Activity"></activity>
-
-        <receiver android:name=".ScanResultReceiver">
-            <intent-filter>
-                <action android:name="nlscan.action.SCANNER_RESUL" />
-            </intent-filter>
-        </receiver>
     </application>
 </manifest>
