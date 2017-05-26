@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText barcode, count;
     private List<Data> list = new ArrayList<>();
     private BroadcastReceiver scanner = null;
+    private TextView name_text, count_text, value_text, context_db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         barcode = (EditText) findViewById(R.id.barcode);
         count = (EditText) findViewById(R.id.count);
+        name_text = (TextView) findViewById(R.id.name_text);
+        count_text = (TextView) findViewById(R.id.count_text);
+        value_text = (TextView) findViewById(R.id.value_text);
+        context_db = (TextView) findViewById(R.id.count_db_text);
         scanner = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -53,11 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                    Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-                    Gson gson = new Gson();
-                    String info = gson.toJson(list);
-                    intent.putExtra("info",info);
-                    startActivity(intent);
+                    //read from db and show in text
                 }
                 return true;
             }
