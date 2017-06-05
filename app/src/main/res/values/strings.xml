@@ -2,6 +2,9 @@
     <string name="app_name">Scanner</string>
     <string name="scan">scan</string>
     <string name="barcode">Barcode</string>
-    <string name="count">Count</string>
+    <string name="count">Count ... Default 1</string>
     <string name="add">add</string>
+    <string name="art">Article</string>
+    <string name="code">Code</string>
+
 </resources>
